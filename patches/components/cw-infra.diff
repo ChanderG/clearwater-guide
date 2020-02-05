@@ -1,0 +1,11 @@
+--- a/clearwater-infrastructure/PyZMQ/Makefile
++++ b/clearwater-infrastructure/PyZMQ/Makefile
+@@ -9,7 +9,7 @@ X86_64_ONLY=0
+ .PHONY: build
+
+ PIP_VERSION := 9.0.1
+-BUILDOUT_VERSION := 2.11.0
++BUILDOUT_VERSION := 2.12.1
+ SETUPTOOLS_VERSION := 38
+
+ MARKER_FILE := ${ENV_DIR}/.pip_${PIP_VERSION}_buildout_${BUILDOUT_VERSION}_setuptools_${SETUPTOOLS_VERSION}

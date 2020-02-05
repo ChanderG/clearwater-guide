@@ -25,3 +25,9 @@ First fetch the sources from Github:
 ./scripts/fetch-component-sources.sh
 ```
 This script requires a ssh based git clone setup to GitHub, to pull the recursive repos.
+
+Patch the sources:
+```
+./scripts/patch-sources.sh
+```
+This uses the patches from the `patches/` folder. Look [here](./patches/README.md) to see details on what the patches do.

@@ -1,0 +1,14 @@
+# Patches
+
+The patches are organized into 2 groups:
+
+1. `components/` - component source patches.
+2. `deployment/` - for the docker-compose/kubernetes deployment files.
+
+## Components
+
+One set of patches deal with setting ulimits. In my own attempt, the ulimit command succeeded only in the order soft-hard. This may be non-essential skipped.
+
+Another set of patches (`crest`, `cassandra`) setup the right version of Cassandra to use. This is beacause the originally used versions were too old, not available anymore.
+
+The patch for `infra` changes a sub-dependency version for a dependency to compile correctly. For `memcached`, the tests have been disabled in the compilation process as they failed for whatever reason.

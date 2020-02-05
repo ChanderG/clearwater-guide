@@ -1,0 +1,22 @@
+--- a/debian/astaire.init.d
++++ b/debian/astaire.init.d
+@@ -107,6 +107,7 @@ do_run()
+         install -m 755 -o $NAME -g root -d /var/run/$NAME && chown -R $NAME /var/run/$NAME
+
+         export LD_LIBRARY_PATH=/usr/share/clearwater/astaire/lib
++        ulimit -Sn 1000000
+         ulimit -Hn 1000000
+         ulimit -Sn 1000000
+         ulimit -c unlimited
+diff --git a/debian/rogers.init.d b/debian/rogers.init.d
+index 2c65b13..567d31d 100644
+--- a/debian/rogers.init.d
++++ b/debian/rogers.init.d
+@@ -106,6 +106,7 @@ do_run()
+         install -m 755 -o $NAME -g root -d /var/run/$NAME && chown -R $NAME /var/run/$NAME
+
+         export LD_LIBRARY_PATH=/usr/share/clearwater/rogers/lib
++        ulimit -Sn 1000000
+         ulimit -Hn 1000000
+         ulimit -Sn 1000000
+         ulimit -c unlimited
