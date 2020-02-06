@@ -12,3 +12,5 @@ One set of patches deal with setting ulimits. In my own attempt, the ulimit comm
 Another set of patches (`crest`, `cassandra`) setup the right version of Cassandra to use. This is beacause the originally used versions were too old, not available anymore.
 
 The patch for `infra` changes a sub-dependency version for a dependency to compile correctly. For `memcached`, the tests have been disabled in the compilation process as they failed for whatever reason.
+
+The patch for `astaire` includes a hard dependency which for some reason is only marked as "recommends". Without this extra package, [this](https://github.com/Metaswitch/clearwater-docker/issues/80) issue occurs.

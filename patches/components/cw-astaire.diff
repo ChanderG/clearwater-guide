@@ -8,8 +8,17 @@
          ulimit -Hn 1000000
          ulimit -Sn 1000000
          ulimit -c unlimited
-diff --git a/debian/rogers.init.d b/debian/rogers.init.d
-index 2c65b13..567d31d 100644
+--- a/debian/control
++++ b/debian/control
+@@ -12,7 +12,7 @@ Homepage: http://projectclearwater.org/
+ Package: astaire
+ Architecture: any
+ Recommends: memcached, clearwater-memcached, clearwater-snmp-handler-astaire
+-Depends: clearwater-infrastructure, clearwater-tcp-scalability, clearwater-log-cleanup, libzmq3, astaire-libs, cpulimit, clearwater-monit, libboost-filesystem1.54.0, libboost-regex1.54.0, libboost-system1.54.0
++Depends: clearwater-infrastructure, clearwater-tcp-scalability, clearwater-log-cleanup, libzmq3, astaire-libs, cpulimit, clearwater-monit, libboost-filesystem1.54.0, libboost-regex1.54.0, libboost-system1.54.0 clearwater-memcached
+ Suggests: astaire-dbg
+ Description: Astaire, active resynchronisation for memcached clusters
+
 --- a/debian/rogers.init.d
 +++ b/debian/rogers.init.d
 @@ -106,6 +106,7 @@ do_run()
