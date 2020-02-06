@@ -15,7 +15,7 @@
  Architecture: any
  Recommends: memcached, clearwater-memcached, clearwater-snmp-handler-astaire
 -Depends: clearwater-infrastructure, clearwater-tcp-scalability, clearwater-log-cleanup, libzmq3, astaire-libs, cpulimit, clearwater-monit, libboost-filesystem1.54.0, libboost-regex1.54.0, libboost-system1.54.0
-+Depends: clearwater-infrastructure, clearwater-tcp-scalability, clearwater-log-cleanup, libzmq3, astaire-libs, cpulimit, clearwater-monit, libboost-filesystem1.54.0, libboost-regex1.54.0, libboost-system1.54.0 clearwater-memcached
++Depends: clearwater-infrastructure, clearwater-tcp-scalability, clearwater-log-cleanup, libzmq3, astaire-libs, cpulimit, clearwater-monit, libboost-filesystem1.54.0, libboost-regex1.54.0, libboost-system1.54.0, clearwater-memcached
  Suggests: astaire-dbg
  Description: Astaire, active resynchronisation for memcached clusters
 
