@@ -1,9 +1,10 @@
 --- a/debian/chronos.init.d
 +++ b/debian/chronos.init.d
-@@ -46,6 +46,7 @@ setup_environment()
+@@ -46,5 +46,6 @@ setup_environment()
 
-   # Give chronos sofficient headroom to allow for order of 10 to 20 file handles
+   # Give chronos sofficient headroom to allow for order of 10 to 20 file handles 
    # per thread
 +  ulimit -Sn 10000
    ulimit -Hn 10000
    ulimit -Sn 10000
+

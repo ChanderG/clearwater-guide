@@ -4,10 +4,6 @@
 WORKDIR=workdir
 
 # Helpers
-color_dim() {
-    tput dim
-}
-
-color_reset() {
-    tput sgr0
-}
+fmt_dim() { tput dim ; }
+fmt_reset() { tput sgr0 ; }
+fmt_underline() { tput smul ; }

@@ -1,0 +1,10 @@
+--- a/debian/rules
++++ b/debian/rules
+@@ -45,7 +45,6 @@ build-stamp:  config.status
+ 	dh_quilt_patch
+ 	dh_testdir
+ 	$(MAKE)
+-	dh_auto_test
+ 	touch build-stamp
+ 
+ clean:
