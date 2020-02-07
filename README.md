@@ -20,19 +20,19 @@ This guide consists of the following pieces:
 
 Earlier, Metaswitch made all the component binaries availabale as `deb` packages (for Ubuntu 14.04) at the url "repo.cw-ngv.com". After the archival, this repository is no longer available and so we have to build these components from source ourselves.
 
-### First fetch the sources from Github
+#### First fetch the sources from Github
 ```
 ./scripts/fetch-component-sources.sh
 ```
 This script requires a ssh based git clone setup to GitHub, to pull the recursive repos.
 
-### Patch the sources
+#### Patch the sources
 ```
 ./scripts/patch-sources.sh
 ```
 This uses the patches from the `patches/` folder. Look [here](./patches/README.md) to see details on what the patches do.
 
-### Setup a build environment
+#### Setup a build environment
 
 To build and package the components, we need an Ubuntu 14.04 environment with a bunch of dependencies. We'll setup a Docker image to use as the build environment.
 
@@ -40,7 +40,7 @@ To build and package the components, we need an Ubuntu 14.04 environment with a 
 docker build -t clearwater-guide/build-env ./buildenv
 ```
 
-### Build the components
+#### Build the components
 
 ```
 ./scripts/build-components.sh
