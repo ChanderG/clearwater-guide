@@ -3,7 +3,8 @@
 The patches are organized into 2 groups:
 
 1. `components/` - component source patches.
-2. `deployment/` - for the docker-compose/kubernetes deployment files.
+2. `images/` - for the Dockerfiles.
+3. `deployment/` - for the docker-compose/kubernetes deployment files.
 
 ## Components
 
@@ -14,3 +15,7 @@ Another set of patches (`crest`, `cassandra`) setup the right version of Cassand
 The patch for `infra` changes a sub-dependency version for a dependency to compile correctly. For `memcached`, the tests have been disabled in the compilation process as they failed for whatever reason.
 
 The patch for `astaire` includes a hard dependency which for some reason is only marked as "recommends". Without this extra package, [this](https://github.com/Metaswitch/clearwater-docker/issues/80) issue occurs.
+
+## Images
+
+Primary change here is to disable certain Ubuntu 14.04 upgrades dues to non-availability and adding the packages and installing them locally instead of pulling them from a remote.

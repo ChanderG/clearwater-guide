@@ -51,3 +51,15 @@ In this step, we run a build environment container to build the `deb` packages. 
 2. Mount the component source folder as a volume.
 3. Run the specific commands to build and package. This varies from component to component.
 4. Move the artifacts to a folder in the component source folder so that they are persisted on the host machine.
+
+### Building the images
+
+In this section, we'll build the images needed to run the Clearwater system.
+
+#### Building the base image
+
+All images base on this one. Let's build this first.
+
+```
+./scripts/build-base-image.sh
+```
