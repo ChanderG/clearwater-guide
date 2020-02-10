@@ -33,6 +33,7 @@ build ellis "make deb"
 build ralf "make deb"
 build homestead "make deb"
 build sprout "make deb"
+build clearwater-nginx "make deb"
 
 echo "> Special pre-processing for clearwater-snmp-handlers..."
 fmt_underline

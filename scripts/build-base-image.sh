@@ -50,7 +50,7 @@ echo "> Build the image..."
 
 fmt_dim
   cd $WORKDIR/clearwater-docker
-  docker build -t clearwater-guide/base base
+  docker build -t clearwater/base base
   cd -
 fmt_reset
 

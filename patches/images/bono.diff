@@ -8,7 +8,7 @@
 +RUN mkdir /tmp/clearwater-extra-debs
 +ADD clearwater-debs /tmp/clearwater-extra-debs
 +
-+RUN dpkg -i /tmp/clearwater-extra-debs/*; apt-get install -f -y
++RUN dpkg -i /tmp/clearwater-extra-debs/*; apt-get install -f -y; dpkg -i /tmp/clearwater-extra-debs/*;
 +
  RUN sed -e 's/\(echo 0 > \/proc\/sys\/kernel\/yama\/ptrace_scope\)/# \0/g' -i /etc/init.d/bono
 
