@@ -63,3 +63,9 @@ All images base on this one. Let's build this first.
 ```
 ./scripts/build-base-image.sh
 ```
+
+#### Build the other images
+
+```
+./scripts/build-images.sh
+```

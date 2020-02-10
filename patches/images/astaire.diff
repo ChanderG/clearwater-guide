@@ -1,0 +1,16 @@
+--- a/astaire/Dockerfile
++++ b/astaire/Dockerfile
+@@ -1,9 +1,10 @@
+ FROM clearwater/base
+ MAINTAINER maintainers@projectclearwater.org
+
+-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes clearwater-memcached
+-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes astaire
+-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes rogers
++RUN mkdir /tmp/clearwater-extra-debs
++ADD clearwater-debs /tmp/clearwater-extra-debs
++
++RUN dpkg -i /tmp/clearwater-extra-debs/*; apt-get install -f -y
+
+ COPY memcached.supervisord.conf /etc/supervisor/conf.d/memcached.conf
+ COPY astaire.supervisord.conf /etc/supervisor/conf.d/astaire.conf

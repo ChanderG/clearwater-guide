@@ -1,0 +1,21 @@
+--- a/cassandra/Dockerfile
++++ b/cassandra/Dockerfile
+@@ -1,7 +1,17 @@
+ FROM clearwater/base
+ MAINTAINER maintainers@projectclearwater.org
+
+-RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes homestead-cassandra homestead-prov-cassandra homer-cassandra
++# Needs Cassandra
++RUN echo "deb http://www.apache.org/dist/cassandra/debian 21x main" | tee -a /etc/apt/sources.list.d/cassandra.sources.list
++RUN curl https://www.apache.org/dist/cassandra/KEYS | sudo apt-key add -
++RUN apt-get update
++RUN apt-get install -y cassandra cassandra-tools
++
++RUN mkdir /tmp/clearwater-extra-debs
++ADD clearwater-debs /tmp/clearwater-extra-debs
++
++RUN dpkg -i /tmp/clearwater-extra-debs/*; apt-get install -f -y; dpkg -i /tmp/clearwater-extra-debs/*
++RUN sed -i "s/rpc_address: ::0/rpc_address: 0.0.0.0/" /usr/share/clearwater/cassandra/cassandra.yaml.template
+ RUN sed -e 's/-c cassandra/-c root/g' -i /etc/init.d/cassandra
+
+ COPY start_cassandra.sh /usr/bin/start_cassandra.sh
