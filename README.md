@@ -66,6 +66,23 @@ All images base on this one. Let's build this first.
 
 #### Build the other images
 
+Build all images:
 ```
 ./scripts/build-images.sh
+```
+Note: all images are tagged under a namespace defined in the `vars` file.
+
+### Deploying
+
+The `clearwater-docker` repository talks about deploying using `docker` or `kuberenetes`.
+
+While the `docker` deployment may work, there are issues with running the tests post that, so we'll cover only
+the `kuberenetes` deployment.
+
+The `k8s` deployment includes `helm` charts. While they may work, my own local tests showed that the k8s `deployments` had to be brought up in a specific order for the system to work correctly. Hence, I'll follow a simple `kubectl` based deployment approach.
+
+Firstly, the resource definitions should work for `kubernetes` server versions `1.16` and older. If you happen
+to be using `1.17` and later, some changes are needed in the yaml files. Run the following:
+```
+./scripts/patch-k8s-files.sh
 ```

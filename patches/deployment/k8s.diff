@@ -1,0 +1,127 @@
+--- kubernetes/templates/astaire-depl.tmpl
++++ kubernetes/templates/astaire-depl.tmpl
+@@ -1,8 +1,11 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: astaire
+ spec:
++  selector:
++    matchLabels:
++      service: astaire
+   replicas: 1
+   template:
+     metadata:
+--- kubernetes/templates/bono-depl.tmpl
++++ kubernetes/templates/bono-depl.tmpl
+@@ -1,4 +1,4 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: bono
+--- kubernetes/templates/cassandra-depl.tmpl
++++ kubernetes/templates/cassandra-depl.tmpl
+@@ -1,8 +1,11 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: cassandra
+ spec:
++  selector:
++    matchLabels:
++      service: cassandra
+   replicas: 3
+   template:
+     metadata:
+--- kubernetes/templates/chronos-depl.tmpl
++++ kubernetes/templates/chronos-depl.tmpl
+@@ -5,6 +5,9 @@ metadata:
+     service: chronos
+   name: chronos
+ spec:
++  selector:
++    matchLabels:
++      service: chronos
+   replicas: 1
+   template:
+     metadata:
+--- kubernetes/templates/ellis-depl.tmpl
++++ kubernetes/templates/ellis-depl.tmpl
+@@ -1,8 +1,11 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: ellis
+ spec:
++  selector:
++    matchLabels:
++      service: ellis
+   replicas: 1
+   template:
+     metadata:
+--- kubernetes/templates/etcd-depl.tmpl
++++ kubernetes/templates/etcd-depl.tmpl
+@@ -1,8 +1,11 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: etcd
+ spec:
++  selector:
++    matchLabels:
++      instance-type: etcd-pod
+   replicas: 1
+   template:
+     metadata:
+--- kubernetes/templates/homer-depl.tmpl
++++ kubernetes/templates/homer-depl.tmpl
+@@ -1,8 +1,11 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: homer
+ spec:
++  selector:
++    matchLabels:
++      service: homer
+   replicas: 1
+   template:
+     metadata:
+--- kubernetes/templates/homestead-depl.tmpl
++++ kubernetes/templates/homestead-depl.tmpl
+@@ -1,4 +1,4 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: homestead
+--- kubernetes/templates/homestead-prov-depl.tmpl
++++ kubernetes/templates/homestead-prov-depl.tmpl
+@@ -1,4 +1,4 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: homestead-prov
+--- kubernetes/templates/ralf-depl.tmpl
++++ kubernetes/templates/ralf-depl.tmpl
+@@ -1,4 +1,4 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: ralf
+--- kubernetes/templates/sprout-depl.tmpl
++++ kubernetes/templates/sprout-depl.tmpl
+@@ -1,4 +1,4 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: sprout

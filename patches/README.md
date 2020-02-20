@@ -19,3 +19,7 @@ The patch for `astaire` includes a hard dependency which for some reason is only
 ## Images
 
 Primary change here is to disable certain Ubuntu 14.04 upgrades dues to non-availability and adding the packages and installing them locally instead of pulling them from a remote.
+
+## Deployment
+
+From version `1.17` of the kubernetes API, several CRDs have moved from extension/beta to the main api family.
