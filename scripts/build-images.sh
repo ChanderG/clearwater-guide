@@ -52,7 +52,7 @@ setup_and_build() {
     echo "> Building image $image..."
 
     fmt_dim
-        docker build -t clearwater-guide/$image .
+        docker build -t $NAMESPACE/$image .
     fmt_reset
 }
 

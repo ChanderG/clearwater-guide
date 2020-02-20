@@ -1,0 +1,13 @@
+--- kubernetes/k8s-gencfg
++++ kubernetes/k8s-gencfg
+@@ -51,7 +51,9 @@ if __name__ == '__main__':
+     if not os.path.isdir(template_dir):
+         print("This script must be run from the kubernetes directory")
+ 
+-    parse_files_in_dir(args, src=template_dir, dest='.')
++    if not os.path.exists('resources'):
++        os.makedirs('resources')
++    parse_files_in_dir(args, src=template_dir, dest='resources')
+ 
+     # Create helm chart
+     helmchart_dir = "clearwater"

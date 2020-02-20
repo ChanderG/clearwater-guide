@@ -81,8 +81,25 @@ the `kuberenetes` deployment.
 
 The `k8s` deployment includes `helm` charts. While they may work, my own local tests showed that the k8s `deployments` had to be brought up in a specific order for the system to work correctly. Hence, I'll follow a simple `kubectl` based deployment approach.
 
-Firstly, the resource definitions should work for `kubernetes` server versions `1.16` and older. If you happen
-to be using `1.17` and later, some changes are needed in the yaml files. Run the following:
+First, publish the images we have created to your own Docker Registry. The following script tags and pushes
+the image as long as you are logged into registry:
 ```
-./scripts/patch-k8s-files.sh
+./scripts/deploy-images.sh <full registry namespace url>
 ```
+
+Also, at this stage, setup your `k8s` cluster to be able to talk to this docker registry. One way to do that is to setup a secret in `k8s` with this auth details to connect to the registry. Note the name of this secret.
+
+Now, we patch the `k8s` scripts and templates to suit our needs. This includes one customizable option.
+Pass a single argument to the script, "updateApiVersion", if you are to work with a k8s cluster of version `1.17` and later. If your `k8s` version is older than that, no argument is needed.
+```
+./scripts/patch-k8s-files.sh <updateApiVersion|cleanup|"">
+```
+Note: This script can also take an argument "cleanup". This is used to undo the changes done by the script. So, for instance, if you wanted to change the k8s deployment target after you have already done this step, you can simply run `./scripts/patch-k8s-files.sh cleanup` followed by `./scripts/patch-k8s-files.sh` or `./scripts/patch-k8s-files.sh updateApiVersion` as needed.
+
+Next, let's generate the resource yamls from the templates:
+```
+cd ./workdir/clearwater-docker/kubernetes
+./k8s-gencfg --image_path <path to image registry> --image_tag latest --image_secret <name of k8s secret that allows access to the docker images>
+```
+
+The folder `workdir/clearwater-docker/kubernetes/resources` should now be populated with the generated resource yaml files.

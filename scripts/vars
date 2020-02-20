@@ -1,7 +1,8 @@
 #!/bin/bash
 
-# Control variable
+# Control variables
 WORKDIR=workdir
+NAMESPACE=clearwater-guide
 
 # Helpers
 fmt_dim() { tput dim ; }

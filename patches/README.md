@@ -23,3 +23,5 @@ Primary change here is to disable certain Ubuntu 14.04 upgrades dues to non-avai
 ## Deployment
 
 From version `1.17` of the kubernetes API, several CRDs have moved from extension/beta to the main api family.
+
+The default `gencfg` spews out files in the `kuberenetes` directory. One simple change is to redirect these files into a subfolder.
