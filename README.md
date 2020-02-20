@@ -87,7 +87,7 @@ the image as long as you are logged into registry:
 ./scripts/deploy-images.sh <full registry namespace url>
 ```
 
-Also, at this stage, setup your `k8s` cluster to be able to talk to this docker registry. One way to do that is to setup a secret in `k8s` with this auth details to connect to the registry. Note the name of this secret.
+Also, at this stage, setup your `k8s` cluster to be able to talk to this docker registry. One way to do that is to setup a secret in `k8s` with this auth details to connect to the registry. Setup such a secret in the cluster namespace that you want to deploy `clearwater` in. Note the name of this secret.
 
 Now, we patch the `k8s` scripts and templates to suit our needs. This includes one customizable option.
 Pass a single argument to the script, "updateApiVersion", if you are to work with a k8s cluster of version `1.17` and later. If your `k8s` version is older than that, no argument is needed.
@@ -103,3 +103,16 @@ cd ./workdir/clearwater-docker/kubernetes
 ```
 
 The folder `workdir/clearwater-docker/kubernetes/resources` should now be populated with the generated resource yaml files.
+
+One more step. In the namespace that you have setup the secret, create an env-var as follows:
+```
+kubectl -n <namespace> create configmap env-vars --from-literal=ZONE=<namespace>.svc.cluster.local
+```
+
+Let's deploy Clearwater. Finally!!!
+```
+./scripts/deploy.sh <up|down> <namespace>
+```
+deploys (or tearsdown) the clearwater system to (from) the provided namespace using other default values configured for kubectl. This script internally just calls kubectl with the resources generated in the previous step in a certain order.
+
+Once this is done, Clearwater will be up and running.
