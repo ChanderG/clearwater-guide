@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cw-sipp-terminal
+spec:
+  selector:
+    matchLabels:
+      service: cw-sipp-terminal
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        service: cw-sipp-terminal
+    spec:
+      containers:
+      - image: __docker_image_registry__/sprout:latest
+        securityContext:
+          allowPrivilegeEscalation: true
+          capabilities:
+            add: ["SYS_ADMIN", "NET_ADMIN"]
+        imagePullPolicy: Always
+        name: test
+        command: ["/bin/bash", "-c", "tail -f /dev/null"]
+        envFrom:
+        - configMapRef:
+              name: env-vars
+      imagePullSecrets:
+      - name: __registry_secret__

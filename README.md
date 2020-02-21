@@ -140,3 +140,23 @@ Deploy the container and run the tests:
 ```
 
 The live tests should run and logs will be printed to the terminal. (Note: 43 tests are skipped in the default configuration, it does not mean anything negative.)
+
+#### Stress Tests
+
+Now, let's run the stress tests.
+
+Firstly, we need to load some numbers that'll be used in the tests. Run:
+```
+./scripts/load-numbers.sh <namespace>
+```
+Note that this takes some time to run.
+
+Look at this script to understand what's happening under the hood and to customize it. The actual process is inside another script, to be found in `stresstest_env/create-numbers.sh` that is copied inside one a Homestead pod and run locally there.
+
+The astute reader would notice that this is a variant of the official process documented here (https://github.com/Metaswitch/crest/blob/dev/docs/Bulk-Provisioning%20Numbers.md). The reason is that that script does not work out of the box for the container based approach of deploying Clearwater.
+
+Now that the data is loaded, we can run `clearwater-sipp` to run the actual stress tests.
+
+```
+./scripts/run-stress-test.sh <namespace> <path to image_registry> <name of registry secret>
+```
