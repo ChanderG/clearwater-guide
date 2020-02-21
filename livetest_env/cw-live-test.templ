@@ -1,0 +1,21 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: cw-live-test
+spec:
+  template:
+    metadata:
+        name: cw-live-test
+    spec:
+      containers:
+      - image: __docker_image_registry__:latest
+        imagePullPolicy: Always
+        name: test
+        workingDir: /clearwater-live-test
+        command: ["/bin/bash", "-c", 'rake test[__namespace__.svc.cluster.local] PROXY="bono.__namespace__.svc.cluster.local" SIGNUP_CODE=secret']
+        envFrom:
+        - configMapRef:
+              name: env-vars
+      restartPolicy: Never
+      imagePullSecrets:
+      - name: __registry_secret__

@@ -4,7 +4,7 @@ source ./scripts/vars
 
 docker_registry_namespace="$1"
 
-if ["$docker_registry_namespace" == ""]; then
+if [ "$docker_registry_namespace" == "" ]; then
     echo "Empty docker registry namespace passed in. Refusing to continue."
     exit
 fi

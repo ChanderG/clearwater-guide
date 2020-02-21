@@ -116,3 +116,27 @@ Let's deploy Clearwater. Finally!!!
 deploys (or tearsdown) the clearwater system to (from) the provided namespace using other default values configured for kubectl. This script internally just calls kubectl with the resources generated in the previous step in a certain order.
 
 Once this is done, Clearwater will be up and running.
+
+### Testing
+
+Of course, how do we know that Clearwater is functioning correctly, or even running at all. Enter the tests.
+
+We have 2 flavours of tests, the `live-tests` that are single e2e tests that try out different scenarios and the 
+`stress-tests` which are a single call scenario tried in large numbers.
+
+#### Live Tests
+
+While the live test code is provided by Metaswitch, the container image is not. So, as before, we pull the code,
+and use a custom Dockerfile to build an image with has all the needed components.
+
+Run:
+```
+./scripts/prepare-live-test-image.sh <full registry namespace url>
+```
+
+Deploy the container and run the tests:
+```
+./scripts/run-live-test.sh <namespace> <path to image_registry> <name of registry secret>
+```
+
+The live tests should run and logs will be printed to the terminal. (Note: 43 tests are skipped in the default configuration, it does not mean anything negative.)
