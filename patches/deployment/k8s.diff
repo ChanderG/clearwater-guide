@@ -38,7 +38,12 @@
      metadata:
 --- kubernetes/templates/chronos-depl.tmpl
 +++ kubernetes/templates/chronos-depl.tmpl
-@@ -5,6 +5,9 @@ metadata:
+@@ -1,10 +1,13 @@
+-apiVersion: extensions/v1beta1
++apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   labels:
      service: chronos
    name: chronos
  spec:

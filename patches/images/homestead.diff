@@ -1,9 +1,9 @@
---- a/homestead/Dockerfile
-+++ b/homestead/Dockerfile
-@@ -1,7 +1,16 @@
+--- homestead/Dockerfile
++++ homestead/Dockerfile
+@@ -1,9 +1,21 @@
  FROM clearwater/base
  MAINTAINER maintainers@projectclearwater.org
-
+ 
 -RUN apt-get update && DEBIAN_FRONTEND=noninteractive apt-get install -y --force-yes homestead
 +# Needs Cassandra
 +RUN echo "deb http://www.apache.org/dist/cassandra/debian 21x main" | tee -a /etc/apt/sources.list.d/cassandra.sources.list
@@ -16,5 +16,10 @@
 +
 +RUN dpkg -i /tmp/clearwater-extra-debs/*; apt-get install -f -y
  RUN sed -e 's/\(echo 0 > \/proc\/sys\/kernel\/yama\/ptrace_scope\)/# \1/g' -i /etc/init.d/homestead
-
+ 
++RUN echo "num_http_threads=50" > /etc/clearwater/user_settings
++RUN echo "homestead_cache_threads=50" >> /etc/clearwater/user_settings
++
  COPY homestead.supervisord.conf /etc/supervisor/conf.d/homestead.conf
+ COPY nginx.supervisord.conf /etc/supervisor/conf.d/nginx.conf
+ COPY clearwater-group.supervisord.conf /etc/supervisor/conf.d/clearwater-group.conf

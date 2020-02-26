@@ -85,7 +85,7 @@ setup() {
     echo "> Setting up deployments - group 2."
     operate_group apply "$group2"
 
-    sleep 30
+    sleep 60
 
     echo "> Setting up deployments - group 3."
     operate_group apply "$group3"

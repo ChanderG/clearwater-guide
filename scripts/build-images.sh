@@ -29,6 +29,11 @@ setup_and_build() {
 
     cd $image
 
+    echo "> Un-patch $image Dockerfile..."
+    fmt_dim
+        git checkout Dockerfile
+    fmt_reset
+
     echo "> Patching $image Dockerfile..."
     fmt_dim
         git apply ../../../patches/images/$image.diff
@@ -43,7 +48,6 @@ setup_and_build() {
     echo "> Setup packages for image $image..."
 
     fmt_dim
-        set -x
         for dep in $deps; do
             cp ../../$dep $DESTDIR/
         done
@@ -54,6 +58,8 @@ setup_and_build() {
     fmt_dim
         docker build -t $NAMESPACE/$image .
     fmt_reset
+
+    cd -
 }
 
 setup_and_build astaire "$sd1/*.deb $sd2/*.deb $sd3/clearwater-tcp-scalability* $sd3/clearwater-memcached*"
