@@ -31,4 +31,11 @@ else
     echo "> Assuming, k8s version < v1.17. Skipping patch of resource files."
 fi
 
+echo "> Disabling the liveness and readiness checks..."
+fmt_dim
+  cd templates
+  sed -i '/livenessProbe/,/readinessProbe/{/readinessProbe/ !{d}}' *-depl.tmpl
+  sed -i '/readinessProbe/,+2d' *-depl.tmpl
+fmt_reset
+
 echo "Done."
