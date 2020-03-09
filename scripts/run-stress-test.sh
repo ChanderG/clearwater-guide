@@ -56,6 +56,12 @@ fmt_dim
     kubectl -n $namespace cp ./uac_modified.xml $pod:/usr/share/clearwater/sip-stress/sip-stress.xml
 fmt_reset
 
+echo "> Reduce the number of users to 200..."
+fmt_dim
+    number=200
+    kubectl -n $namespace exec $pod -- sed -i "$((number+2)),$ d" /usr/share/clearwater/sip-stress/users.csv.1
+fmt_reset
+
 echo "> Run the stress test..."
 fmt_dim
   cmd="/etc/init.d/clearwater-sip-stress start || true; sleep 60; /etc/init.d/clearwater-sip-stress stop"

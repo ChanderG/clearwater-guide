@@ -17,3 +17,6 @@ sed -i "s/  sleep 60/\ \ sleep 10m/g" /usr/share/clearwater/bin/sip-stress
 
 echo "Disable automatic re-run of clearwater-infrastructure..."
 sed -i "s/\(^\s*\)service/\1# service/" /etc/init.d/clearwater-sip-stress
+
+echo "Clean out the default logs folder..."
+rm /var/log/clearwater-sipp/*
