@@ -200,8 +200,8 @@
   <recv response="100" optional="true" next="3">
   </recv>
 
-	<recv request="INVITE">
-	</recv>
+  <recv request="INVITE">
+  </recv>
 
   <nop hide="true">
     <action>
@@ -211,6 +211,9 @@
   </nop>
 
   <recv response="100" next="4">
+  </recv>
+
+  <recv request="ACK" optional="true">
   </recv>
 
   <label id="3" />
@@ -321,8 +324,8 @@
   <send>
     <![CDATA[
 
-			ACK sip:[$peer_dn]@[$nat_ip_addr]:[$nat_port];transport=[transport];ob SIP/2.0
-			Via: SIP/2.0/[transport] [$nat_ip_addr]:[$nat_port];rport;branch=z9hG4bK-[$my_dn]-[call_number]-[$call_repeat]-1
+      ACK sip:[$peer_dn]@[$nat_ip_addr]:[$nat_port];transport=[transport];ob SIP/2.0
+      Via: SIP/2.0/[transport] [$nat_ip_addr]:[$nat_port];rport;branch=z9hG4bK-[$my_dn]-[call_number]-[$call_repeat]-1
       [routes]
       Max-Forwards: 70
       From: sip:[$my_dn]@[service];tag=[pid]SIPpTag00[call_number]1234

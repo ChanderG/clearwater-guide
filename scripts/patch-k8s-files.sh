@@ -38,4 +38,9 @@ fmt_dim
   sed -i '/readinessProbe/,+2d' *-depl.tmpl
 fmt_reset
 
+echo "> Set number of Cassandra replicas to 1..."
+fmt_dim
+  sed -i '/replicas/{s/3/1/g}' cassandra-depl.tmpl
+fmt_reset
+
 echo "Done."
