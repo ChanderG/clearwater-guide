@@ -58,9 +58,8 @@ fmt_reset
 
 echo "> Run the stress test..."
 fmt_dim
-  # cmd="/etc/init.d/clearwater-sip-stress start || true; sleep 60; /etc/init.d/clearwater-sip-stress stop"
-  cmd="/etc/init.d/clearwater-sip-stress start"
-  echo "$cmd" | kubectl -n $namespace exec $pod bash
+  cmd="/etc/init.d/clearwater-sip-stress start || true; sleep 60; /etc/init.d/clearwater-sip-stress stop"
+  kubectl -n $namespace exec $pod -- bash -c "$cmd"
 fmt_reset
 
 echo "> Logs are now available in $pod: /var/log/clearwater-sipp"
