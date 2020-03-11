@@ -321,6 +321,9 @@
   <recv response="200" rrs="true">
   </recv>
 
+
+  <!-- Disable this ACK back and forth. Causes timeout in a certain subset.
+
   <send>
     <![CDATA[
 
@@ -339,6 +342,8 @@
 
   <recv request="ACK">
   </recv>
+
+  -->
 
   <pause variable="call_length" />
 
