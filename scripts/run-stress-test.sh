@@ -70,4 +70,9 @@ fmt_reset
 
 echo "> Logs are now available in $pod: /var/log/clearwater-sipp"
 
+echo "> Here is a sampling: "
+fmt_dim
+  kubectl -n $namespace exec $pod -- bash -c "tail -n40 /var/log/clearwater-sipp/sip-stress.1.out"
+fmt_reset
+
 echo "> Done."
