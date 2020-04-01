@@ -160,3 +160,25 @@ Now that the data is loaded, we can run `clearwater-sipp` to run the actual stre
 ```
 ./scripts/run-stress-test.sh <namespace> <path to image_registry> <name of registry secret>
 ```
+
+## Other Stuff
+
+### Accessing SNMP Statistics
+
+Clearwater exposes interesting statistics of the various components per https://clearwater.readthedocs.io/en/stable/Clearwater_SNMP_Statistics.html
+
+The setup above enables SNMP statistics gathering and makes things a bit easier.
+
+On any Clearwater pod:
+1. Create folder `~/.snmp/mibs`.
+2. `cp /usr/share/clearwater/mibs/PROJECT-CLEARWATER-MIB ~/.snmp/mibs/`
+3. Run `export MIBS=+PROJECT-CLEARWATER-MIB`
+
+To finally obtain the stats:
+```
+snmpwalk -v2c -c clearwater <ip> PROJECT-CLEARWATER-MIB::projectClearwater
+```
+
+This list all stats available at the <ip> with the current value.
+
+<ip> has to be the IP/hostname of a Clearwater service that exposes these stats. Only `bono`, `chronos`, `homestead` and `sprout` seem to be providing these statistics.

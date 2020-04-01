@@ -27,6 +27,7 @@ fmt_dim
   SRCDIR2=clearwater-etcd/output-debs/
   SRCDIR3=clearwater-monit/output-debs/
   SRCDIR4=clearwater-net-snmp/output-debs/
+  SRCDIR5=clearwater-snmp-handlers/output-debs/
 
   DESTDIR=clearwater-docker/base/clearwater-debs
   mkdir -p $DESTDIR
@@ -36,12 +37,17 @@ fmt_dim
   cp $SRCDIR1/clearwater-auto-config-docker_*.deb $DESTDIR/
   cp $SRCDIR1/clearwater-diags-monitor_*.deb $DESTDIR/
   cp $SRCDIR1/clearwater-log-cleanup_*.deb $DESTDIR/
+  cp $SRCDIR1/clearwater-snmpd*.deb $DESTDIR/
 
   cp $SRCDIR2/*.deb $DESTDIR/
 
   cp $SRCDIR3/*.deb $DESTDIR/
 
   cp $SRCDIR4/*.deb $DESTDIR/
+
+  # only needed on some nodes: ttps://clearwater.readthedocs.io/en/stable/Clearwater_SNMP_Statistics.html
+  # let's blanket install for ease of use
+  cp $SRCDIR5/*.deb $DESTDIR/
 
   cd -
 fmt_reset
