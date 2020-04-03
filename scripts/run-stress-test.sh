@@ -56,9 +56,9 @@ fmt_dim
     kubectl -n $namespace cp ./uac_modified.xml $pod:/usr/share/clearwater/sip-stress/sip-stress.xml
 fmt_reset
 
-echo "> Reduce the number of users to 200..."
+number=${4:-300}
+echo "> Reduce the number of users to $number..."
 fmt_dim
-    number=200
     kubectl -n $namespace exec $pod -- sed -i "$((number+2)),$ d" /usr/share/clearwater/sip-stress/users.csv.1
 fmt_reset
 

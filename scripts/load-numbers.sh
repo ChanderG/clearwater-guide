@@ -7,8 +7,9 @@ if [ "$namespace" == "" ]; then
     echo "No namespace name passed. Refusing to continue."
     exit
 fi
-
 echo "> Using namespace: $namespace"
+
+num_numbers=${2:-50000}
 
 echo "> Obtain the Homestead pod name..."
 fmt_dim
@@ -23,5 +24,5 @@ fmt_reset
 
 echo "> Execute the script..."
 fmt_dim
-    kubectl -n $namespace exec -i $pod -c homestead /tmp/create-numbers.sh
+    kubectl -n $namespace exec -i $pod -c homestead /tmp/create-numbers.sh $num_numbers
 fmt_reset

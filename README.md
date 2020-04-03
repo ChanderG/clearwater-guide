@@ -147,9 +147,9 @@ Now, let's run the stress tests.
 
 Firstly, we need to load some numbers that'll be used in the tests. Run:
 ```
-./scripts/load-numbers.sh <namespace>
+./scripts/load-numbers.sh <namespace> [<number of numbers>]
 ```
-Note that this takes some time to run.
+Note that this takes some time to run. Ensure that you have double the numbers as calls, as each call needs a sender and reciever number.
 
 Look at this script to understand what's happening under the hood and to customize it. The actual process is inside another script, to be found in `stresstest_env/create-numbers.sh` that is copied inside one a Homestead pod and run locally there.
 
@@ -158,7 +158,7 @@ The astute reader would notice that this is a variant of the official process do
 Now that the data is loaded, we can run `clearwater-sipp` to run the actual stress tests.
 
 ```
-./scripts/run-stress-test.sh <namespace> <path to image_registry> <name of registry secret>
+./scripts/run-stress-test.sh <namespace> <path to image_registry> <name of registry secret> [<number of calls>]
 ```
 
 ## Other Stuff

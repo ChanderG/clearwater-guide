@@ -52,10 +52,10 @@
   </nop>
 	<!-- END C1 -->
 
-	<!-- C3. Generate some randomness between the request to reduce load on Bono.  -->
-  <pause distribution="uniform" min="0" max="1000" />
+  <!-- C3. Generate some randomness between the request to reduce load on Bono.  -->
+  <pause distribution="uniform" min="0" max="30000" />
 
-	<!-- C2. Register, with re-attempt on auth failure, to get the nat_ip_addr etc. -->
+  <!-- C2. Register, with re-attempt on auth failure, to get the nat_ip_addr etc. -->
   <send>
     <![CDATA[
 

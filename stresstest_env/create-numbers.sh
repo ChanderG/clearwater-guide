@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo -e "\e[31m Setting up the number of numbers... \e[0m"
-num_users=50000
+num_users=$1
 top_number=$(expr 2010000000 + $num_users - 1)
 numbers=$(seq 2010000000 $top_number)
 
