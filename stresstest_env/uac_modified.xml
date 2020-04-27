@@ -56,7 +56,7 @@
   <pause distribution="uniform" min="0" max="30000" />
 
   <!-- C2. Register, with re-attempt on auth failure, to get the nat_ip_addr etc. -->
-  <send>
+  <send start_rtd="RRD">
     <![CDATA[
 
       REGISTER sip:[$my_dn]@[service] SIP/2.0
@@ -105,7 +105,7 @@
     ]]>
   </send>
 
-  <recv response="200">
+  <recv response="200" rtd="RRD">
     <action>
       <ereg regexp="rport=([^;]*);.*received=([^;]*);" search_in="hdr" header="Via:" assign_to="dummy,nat_port,nat_ip_addr" />
       <add assign_to="reg_repeat" value="1" />
@@ -171,7 +171,7 @@
   </recv>
 	<!-- END C4. -->
 
-  <send retrans="500">
+  <send retrans="500" start_rtd="SRD">
     <![CDATA[
 
       INVITE sip:[$peer_dn]@[service] SIP/2.0
@@ -262,7 +262,7 @@
     ]]>
   </send>
 
-  <recv response="180">
+  <recv response="180" rtd="SRD">
   </recv>
 
   <!-- <recv response="183" optional="true"> -->
@@ -354,7 +354,7 @@
   <!-- or by adding a 'milliseconds = "value"' option here.             -->
   <!-- <pause/> -->
 
-  <send start_rtd="call-teardown">
+  <send start_rtd="teardown">
     <![CDATA[
 
       BYE sip:[$peer_dn]@[$nat_ip_addr]:[$nat_port];transport=[transport];ob SIP/2.0
@@ -392,7 +392,7 @@
   </send>
 
   <!-- The 'crlf' option inserts a blank line in the statistics report. -->
-  <recv response="200" crlf="true" rtd="call-teardown">
+  <recv response="200" crlf="true" rtd="teardown">
   </recv>
 
   <!-- definition of the response time repartition table (unit is ms)   -->
