@@ -37,9 +37,17 @@ fmt_reset
 
 echo "> Save the terminal pod id..."
 fmt_dim
-    pod=$(kubectl -n $namespace get pods | grep cw-sipp-terminal | grep Running | head -n1 | awk '{print $1}')
-    echo "Pod id is: $pod"
+    while : ; do
+        pod=$(kubectl -n $namespace get pods | grep cw-sipp-terminal | grep Running | head -n1 | awk '{print $1}')
+        echo "Pod id is: $pod"
+        if [[ "$pod" != "" ]]; then
+            break
+        fi
+    done
 fmt_reset
+
+echo "> Some wait time..."
+sleep 90s
 
 echo "> Copy in setup terminal script..."
 fmt_dim
@@ -64,7 +72,7 @@ fmt_reset
 
 echo "> Run the stress test..."
 fmt_dim
-  cmd="/etc/init.d/clearwater-sip-stress start || true; sleep 60; /etc/init.d/clearwater-sip-stress stop"
+  cmd="echo '>:100:stresstest::' > /dev/null; /etc/init.d/clearwater-sip-stress start || true; sleep 60; /etc/init.d/clearwater-sip-stress stop; echo '<:100:stresstest::' > /dev/null"
   kubectl -n $namespace exec $pod -- bash -c "$cmd"
 fmt_reset
 

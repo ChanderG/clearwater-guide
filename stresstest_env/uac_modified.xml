@@ -55,6 +55,12 @@
   <!-- C3. Generate some randomness between the request to reduce load on Bono.  -->
   <pause distribution="uniform" min="0" max="30000" />
 
+  <nop>
+    <action>
+      <exec command="echo '>:[$my_dn]:sipcall::' > /dev/null"/>
+    </action>
+  </nop>
+
   <!-- C2. Register, with re-attempt on auth failure, to get the nat_ip_addr etc. -->
   <send start_rtd="RRD">
     <![CDATA[
@@ -393,6 +399,9 @@
 
   <!-- The 'crlf' option inserts a blank line in the statistics report. -->
   <recv response="200" crlf="true" rtd="teardown">
+    <action>
+      <exec command="echo '<:[$my_dn]:sipcall::' > /dev/null"/>
+    </action>
   </recv>
 
   <!-- definition of the response time repartition table (unit is ms)   -->
