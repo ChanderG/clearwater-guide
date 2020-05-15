@@ -14,10 +14,6 @@ spec:
     spec:
       containers:
       - image: __docker_image_registry__/sprout:latest
-        securityContext:
-          allowPrivilegeEscalation: true
-          capabilities:
-            add: ["SYS_ADMIN", "NET_ADMIN"]
         imagePullPolicy: Always
         name: test
         command: ["/bin/bash", "-c", "tail -f /dev/null"]
